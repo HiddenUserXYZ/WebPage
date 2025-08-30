@@ -20,13 +20,13 @@ body {
   min-height: 100vh;
   display: flex;
   justify-content: center;
-  align-items: flex-start; /* top se content start hoga */
+  align-items: center;
   font-family: "Poppins", sans-serif;
   color: #e0e0e0;
   padding: 20px;
-  overflow-y: auto; /* scroll allow */
-  background: black;
+  overflow: hidden;
   position: relative;
+  background: black;
 }
 
 /* Canvas Background (Matrix Effect) */
@@ -42,14 +42,12 @@ body {
 
 /* Main Box */
 .main-box {
-  width: 95%;
-  max-width: 1200px;
-  min-width: 300px;
-  margin: 40px auto;
+  width: 100%;
+  max-width: 900px;
   background: rgba(0,0,0,0.6);
   backdrop-filter: blur(14px);
   border-radius: 25px;
-  padding: 4vw 3vw;
+  padding: 50px 40px;
   box-shadow: 0 0 60px rgba(0, 255, 200, 0.4);
   display: flex;
   flex-direction: column;
@@ -65,7 +63,7 @@ body {
 }
 .profile h1 {
   font-family: "Rajdhani", sans-serif;
-  font-size: clamp(2em, 5vw, 4.5em);
+  font-size: 3.8em;
   color: #00ffff;
   margin-bottom: 10px;
   text-shadow: 0 0 20px #00ffff, 0 0 40px #00ccff, 0 0 60px #00ffaa;
@@ -73,7 +71,7 @@ body {
   animation: neonPulse 1.6s infinite alternate;
 }
 .profile p {
-  font-size: clamp(1em, 1.5vw, 1.4em);
+  font-size: 1.3em;
   color: #c8fcee;
   line-height: 1.7;
 }
@@ -95,7 +93,7 @@ body {
 .list h2 {
   text-align: center;
   margin-bottom: 25px;
-  font-size: clamp(1.5em, 3vw, 2.2em);
+  font-size: 2.4em;
   color: #00ffff;
   text-shadow: 0 0 15px #00ffff, 0 0 30px #00ccff;
   font-family: "Rajdhani", sans-serif;
@@ -128,7 +126,7 @@ body {
 }
 .card-header strong {
   font-family: "Rajdhani", sans-serif;
-  font-size: 1.3em;
+  font-size: 1.4em;
   color: #00ffff;
 }
 
@@ -171,13 +169,13 @@ body {
 }
 .btn {
   flex: 1;
-  padding: 20px 0;
+  padding: 22px 0;
   border-radius: 25px;
   font-weight: 700;
   background: rgba(0,0,0,0.8);
   color: #00ffff;
   text-decoration: none;
-  font-size: clamp(1em, 2vw, 1.6em);
+  font-size: 1.6em;
   border: 2px solid #00ffff;
   text-align: center;
   box-shadow: 0 0 25px #00ffff80, 0 0 50px #00ccff60;
@@ -189,13 +187,13 @@ body {
   color: #fff;
 }
 
-/* Mobile */
+/* Responsive */
 @media (max-width: 600px) {
   .main-box { padding: 30px 20px; }
   .profile h1 { font-size: 2.4em; }
-  .profile p { font-size: 1em; }
-  .btn { font-size: 1.1em; padding: 14px 0; }
-  .user-card { padding: 16px; font-size: 0.9em; }
+  .profile p { font-size: 1.05em; }
+  .btn { font-size: 1.2em; padding: 16px 0; }
+  .user-card { padding: 18px; font-size: 0.95em; }
 }
 </style>
 </head>
@@ -208,7 +206,7 @@ body {
   <!-- Profile -->
   <div class="profile">
     <h1>TELEGRAM</h1>
-    <p> Cyber Security | Penetration Testing | Bot Dev<br>
+    <p>🛡 Cyber Security | Penetration Testing | Bot Dev<br>
        ⚡ Automations & Coding Enthusiast<br>
        🚀 Exploring the Digital World</p>
   </div>
@@ -285,10 +283,10 @@ const lettersArray = letters.split("");
 
 // Font size
 const fontSize = 16;
-let columns = canvas.width / fontSize;
+const columns = canvas.width / fontSize;
 
 // Drops
-let drops = [];
+const drops = [];
 for (let x = 0; x < columns; x++) drops[x] = 1;
 
 // Draw function
@@ -316,10 +314,6 @@ setInterval(draw, 35);
 window.addEventListener("resize", () => {
   canvas.height = window.innerHeight;
   canvas.width = window.innerWidth;
-
-  columns = canvas.width / fontSize;
-  drops = [];
-  for (let x = 0; x < columns; x++) drops[x] = 1;
 });
 </script>
 </body>
