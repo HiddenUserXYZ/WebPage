@@ -20,13 +20,13 @@ body {
   min-height: 100vh;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start; /* top se content start hoga */
   font-family: "Poppins", sans-serif;
   color: #e0e0e0;
   padding: 20px;
-  overflow: hidden;
-  position: relative;
+  overflow-y: auto; /* scroll allow */
   background: black;
+  position: relative;
 }
 
 /* Canvas Background (Matrix Effect) */
@@ -42,12 +42,14 @@ body {
 
 /* Main Box */
 .main-box {
-  width: 100%;
-  max-width: 900px;
+  width: 95%;
+  max-width: 1200px;
+  min-width: 300px;
+  margin: 40px auto;
   background: rgba(0,0,0,0.6);
   backdrop-filter: blur(14px);
   border-radius: 25px;
-  padding: 50px 40px;
+  padding: 4vw 3vw;
   box-shadow: 0 0 60px rgba(0, 255, 200, 0.4);
   display: flex;
   flex-direction: column;
@@ -63,7 +65,7 @@ body {
 }
 .profile h1 {
   font-family: "Rajdhani", sans-serif;
-  font-size: 3.5em;
+  font-size: clamp(2em, 5vw, 4.5em);
   color: #00ffff;
   margin-bottom: 10px;
   text-shadow: 0 0 20px #00ffff, 0 0 40px #00ccff, 0 0 60px #00ffaa;
@@ -71,7 +73,7 @@ body {
   animation: neonPulse 1.6s infinite alternate;
 }
 .profile p {
-  font-size: 1.2em;
+  font-size: clamp(1em, 1.5vw, 1.4em);
   color: #c8fcee;
   line-height: 1.7;
 }
@@ -93,7 +95,7 @@ body {
 .list h2 {
   text-align: center;
   margin-bottom: 25px;
-  font-size: 2.2em;
+  font-size: clamp(1.5em, 3vw, 2.2em);
   color: #00ffff;
   text-shadow: 0 0 15px #00ffff, 0 0 30px #00ccff;
   font-family: "Rajdhani", sans-serif;
@@ -175,7 +177,7 @@ body {
   background: rgba(0,0,0,0.8);
   color: #00ffff;
   text-decoration: none;
-  font-size: 1.4em;
+  font-size: clamp(1em, 2vw, 1.6em);
   border: 2px solid #00ffff;
   text-align: center;
   box-shadow: 0 0 25px #00ffff80, 0 0 50px #00ccff60;
@@ -194,22 +196,6 @@ body {
   .profile p { font-size: 1em; }
   .btn { font-size: 1.1em; padding: 14px 0; }
   .user-card { padding: 16px; font-size: 0.9em; }
-}
-
-/* Tablet + Laptop */
-@media (min-width: 601px) and (max-width: 1200px) {
-  .main-box { max-width: 1000px; padding: 60px 50px; }
-  .profile h1 { font-size: 4em; }
-  .profile p { font-size: 1.3em; }
-  .btn { font-size: 1.6em; }
-}
-
-/* Large Desktop */
-@media (min-width: 1201px) {
-  .main-box { max-width: 1200px; padding: 80px 70px; }
-  .profile h1 { font-size: 4.5em; }
-  .profile p { font-size: 1.5em; }
-  .btn { font-size: 1.8em; }
 }
 </style>
 </head>
