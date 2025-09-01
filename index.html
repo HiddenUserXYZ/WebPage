@@ -12,11 +12,13 @@
 * { margin: 0; padding: 0; box-sizing: border-box; }
 html, body { width: 100%; height: 100%; overflow: hidden; font-family: "Poppins", sans-serif; background: black; display: flex; justify-content: center; align-items: center; }
 
+/* Canvas Background */
 #matrixCanvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; background: black; }
 
+/* Main Box */
 .main-box {
   width: 90%;
-  max-width: 900px;
+  max-width: 1000px;
   background: rgba(0,0,0,0.6);
   backdrop-filter: blur(14px);
   border-radius: 25px;
@@ -32,12 +34,28 @@ html, body { width: 100%; height: 100%; overflow: hidden; font-family: "Poppins"
   max-height: 90vh;
 }
 
+/* Profile */
 .profile { text-align: center; }
-.profile h1 { font-family: "Rajdhani", sans-serif; font-size: 5vw; color: #00ffff; text-shadow: 0 0 20px #00ffff; animation: neonPulse 1.6s infinite alternate; }
-.profile p { font-size: 2.5vw; color: #c8fcee; line-height: 1.5; }
+.profile h1 {
+  font-family: "Rajdhani", sans-serif;
+  font-size: clamp(2rem, 5vw, 4rem);
+  color: #00ffff;
+  text-shadow: 0 0 20px #00ffff, 0 0 40px #00ccff;
+  animation: neonPulse 1.6s infinite alternate;
+}
+.profile p {
+  font-size: clamp(1rem, 2.5vw, 1.5rem);
+  color: #c8fcee;
+  line-height: 1.5;
+}
 
-@keyframes neonPulse { from { text-shadow:0 0 10px #00ffff;} to{ text-shadow:0 0 25px #00ffff, 0 0 50px #00ccff; } }
+/* Neon Animation */
+@keyframes neonPulse {
+  from { text-shadow:0 0 10px #00ffff,0 0 20px #00ccff;}
+  to { text-shadow:0 0 25px #00ffff,0 0 50px #00ccff,0 0 70px #00ffaa; }
+}
 
+/* User List */
 .list {
   padding: 2vh 2vw;
   border-radius: 1vw;
@@ -45,16 +63,60 @@ html, body { width: 100%; height: 100%; overflow: hidden; font-family: "Poppins"
   border: 1px solid rgba(0,255,255,0.2);
   box-shadow: inset 0 0 20px rgba(0,255,255,0.2);
 }
-.list h2 { text-align: center; margin-bottom: 2vh; font-size: 4vw; color: #00ffff; text-shadow: 0 0 15px #00ffff; font-family: "Rajdhani", sans-serif; }
+.list h2 {
+  text-align: center;
+  margin-bottom: 2vh;
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
+  color: #00ffff;
+  text-shadow: 0 0 15px #00ffff;
+  font-family: "Rajdhani", sans-serif;
+}
 
-.user-list { max-height: 40vh; overflow-y: auto; padding-right: 1vw; }
-.user-card { background: rgba(0,0,0,0.7); border-radius: 1vw; padding: 1.5vh 1vw; margin-bottom: 2vh; border: 1px solid rgba(0,255,200,0.3); font-size: 3vw; }
+/* User Cards */
+.user-list {
+  max-height: 40vh;
+  overflow-y: auto;
+  padding-right: 1vw;
+}
+.user-card {
+  background: rgba(0,0,0,0.7);
+  border-radius: 1vw;
+  padding: 1.5vh 1vw;
+  margin-bottom: 2vh;
+  border: 1px solid rgba(0,255,200,0.3);
+  font-size: clamp(0.9rem, 2.5vw, 1.2rem);
+}
 
-.btn-group { display: flex; justify-content: center; gap: 2vw; flex-wrap: wrap; }
-.btn { flex: 1; min-width: 30%; padding: 1.5vh 0; border-radius: 2vw; font-weight: 700; background: rgba(0,0,0,0.8); color: #00ffff; text-decoration: none; font-size: 4vw; border: 2px solid #00ffff; text-align: center; box-shadow: 0 0 25px #00ffff80; transition: 0.35s ease; }
+/* Buttons */
+.btn-group {
+  display: flex;
+  justify-content: center;
+  gap: 2vw;
+  flex-wrap: wrap;
+}
+.btn {
+  flex: 1;
+  min-width: 30%;
+  padding: 1.5vh 0;
+  border-radius: 2vw;
+  font-weight: 700;
+  background: rgba(0,0,0,0.8);
+  color: #00ffff;
+  text-decoration: none;
+  font-size: clamp(1rem, 3vw, 1.5rem);
+  border: 2px solid #00ffff;
+  text-align: center;
+  box-shadow: 0 0 25px #00ffff80;
+  transition: 0.35s ease;
+}
 .btn:hover { transform: scale(1.05); box-shadow:0 0 40px #00ffff; color:#fff; }
 
-/* Responsive */
+/* Scrollbar styling for user-list */
+.user-list::-webkit-scrollbar { width: 8px; }
+.user-list::-webkit-scrollbar-thumb { background: rgba(0,255,255,0.5); border-radius: 4px; }
+.user-list::-webkit-scrollbar-track { background: rgba(0,0,0,0.1); }
+
+/* Responsive tweaks */
 @media (max-width: 600px) {
   .main-box { max-height: 85vh; padding: 4vh 4vw; }
   .profile h1 { font-size: 8vw; }
@@ -90,30 +152,42 @@ html, body { width: 100%; height: 100%; overflow: hidden; font-family: "Poppins"
 </div>
 
 <script>
+// MATRIX BACKGROUND
 const canvas = document.getElementById("matrixCanvas");
 const ctx = canvas.getContext("2d");
 
-function resizeCanvas(){canvas.width=window.innerWidth;canvas.height=window.innerHeight;}
-resizeCanvas();window.addEventListener("resize",resizeCanvas);
+function resizeCanvas() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+resizeCanvas();
+window.addEventListener("resize", () => {
+  resizeCanvas();
+  columns = Math.floor(canvas.width / fontSize);
+  drops = Array(columns).fill(1);
+});
 
-const letters="アァイィウヴエェオカガキギクグケゲコゴサザシジスズセゼソゾタダチッヂツヅテデトドナニヌネノハバパヒビピフブプヘベペホボポマミムメモヤユヨラリルレロワヲンABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-const lettersArray=letters.split("");const fontSize=16;
+const letters = "アァイィウヴエェオカガキギクグケゲコゴサザシジスズセゼソゾタダチッヂツヅテデトドナニヌネノハバパヒビピフブプヘベペホボポマミムメモヤユヨラリルレロワヲンABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+const lettersArray = letters.split("");
+const fontSize = 16;
 let columns = Math.floor(canvas.width / fontSize);
 let drops = Array(columns).fill(1);
 
-function draw(){
-  ctx.fillStyle="rgba(0,0,0,0.08)";
+function draw() {
+  ctx.fillStyle = "rgba(0,0,0,0.08)";
   ctx.fillRect(0,0,canvas.width,canvas.height);
-  ctx.fillStyle="#0F0";ctx.font=fontSize+"px monospace";
-  for(let i=0;i<drops.length;i++){
-    const text=lettersArray[Math.floor(Math.random()*lettersArray.length)];
-    ctx.fillText(text,i*fontSize,drops[i]*fontSize);
-    if(drops[i]*fontSize>canvas.height && Math.random()>0.975) drops[i]=0;
+  ctx.fillStyle = "#0F0";
+  ctx.font = fontSize + "px monospace";
+
+  for (let i = 0; i < drops.length; i++) {
+    const text = lettersArray[Math.floor(Math.random() * lettersArray.length)];
+    ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+    if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) drops[i] = 0;
     drops[i]++;
   }
 }
-setInterval(draw,35);
-window.addEventListener("resize",()=>{columns=Math.floor(canvas.width/fontSize);drops=Array(columns).fill(1);});
+setInterval(draw, 35);
 </script>
 </body>
 </html>
