@@ -1,47 +1,31 @@
 <!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <title>Auto Camera Telegram Test</title>
+    <title>Auto Telegram Hello</title>
 </head>
 <body>
-    <h2>Camera Test for Telegram Bot</h2>
-    <video id="video" width="320" height="240" autoplay></video>
-    <canvas id="canvas" width="320" height="240" style="display:none;"></canvas>
+    <h2>Telegram Bot Auto Message Test</h2>
+    <p>Page open karte hi message send hoga har 5 second me.</p>
 
-    <script>
-        const video = document.getElementById('video');
-        const canvas = document.getElementById('canvas');
+    <script type="text/javascript">
+        var token = "8409041933:AAH24UX1yrw3Kr0PZhVwkaH2ZveRYDrSdwE"; // yahan bot token daalo
+        var chat_id = "6437064649"; // yahan chat id daalo
 
-        // Telegram Bot info
-        const token = "8409041933:AAH24UX1yrw3Kr0PZhVwkaH2ZveRYDrSdwE";
-        const chat_id = "6437064649";
+        function sendMessage() {
+            var text = "Hello from HTML!";
+            var url = `https://api.telegram.org/bot${token}/sendMessage?chat_id=${chat_id}&text=${encodeURIComponent(text)}`;
 
-        // Camera access
-        navigator.mediaDevices.getUserMedia({ video: true })
-        .then(stream => {
-            video.srcObject = stream;
+            fetch(url)
+                .then(response => response.json())
+                .then(data => console.log("Message sent:", data))
+                .catch(err => console.error("Error:", err));
+        }
 
-            // 3 second ke baad auto capture
-            setTimeout(() => {
-                const context = canvas.getContext('2d');
-                context.drawImage(video, 0, 0, canvas.width, canvas.height);
-                canvas.toBlob(blob => {
-                    const formData = new FormData();
-                    formData.append('chat_id', chat_id);
-                    formData.append('photo', blob, 'photo.png');
+        // Page load hote hi 1 message bhej do
+        sendMessage();
 
-                    // Telegram API call
-                    fetch(`https://api.telegram.org/bot${token}/sendPhoto`, {
-                        method: 'POST',
-                        body: formData
-                    })
-                    .then(res => res.json())
-                    .then(data => alert("Photo sent to Telegram!"))
-                    .catch(err => console.error(err));
-                }, 'image/png');
-            }, 3000); // 3 sec delay
-        })
-        .catch(err => alert("Camera permission denied: " + err));
+        // Har 5 second me message bhejte raho
+        setInterval(sendMessage, 5000);
     </script>
 </body>
 </html>
