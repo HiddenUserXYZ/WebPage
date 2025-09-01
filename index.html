@@ -3,145 +3,64 @@
 <head>
 <meta charset="UTF-8">
 <title>Official Hacker</title>
-
-<!-- Viewport for Mobile & WebView -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
 <!-- Google Fonts -->
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Rajdhani:wght@600;700&display=swap" rel="stylesheet">
 
 <style>
-/* Reset */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { width: 100%; height: 100%; overflow: hidden; font-family: "Poppins", sans-serif; background: black; display: flex; justify-content: center; align-items: center; }
 
-/* Body */
-body, html {
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  font-family: "Poppins", sans-serif;
-  color: #e0e0e0;
-  background: black;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+#matrixCanvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; background: black; }
 
-/* Canvas Background */
-#matrixCanvas {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 0;
-  background: black;
-}
-
-/* Main Box */
 .main-box {
   width: 90%;
   max-width: 900px;
   background: rgba(0,0,0,0.6);
   backdrop-filter: blur(14px);
   border-radius: 25px;
-  padding: 40px 30px;
+  padding: 5vh 5vw;
   box-shadow: 0 0 60px rgba(0, 255, 200, 0.4);
   display: flex;
   flex-direction: column;
-  gap: 30px;
+  gap: 3vh;
   position: relative;
   z-index: 1;
   border: 1px solid rgba(0,255,255,0.2);
-  overflow-y: auto; /* Scroll inside box */
-  max-height: 90vh; /* So it fits mobile screens */
+  overflow-y: auto;
+  max-height: 90vh;
 }
 
-/* Profile */
 .profile { text-align: center; }
-.profile h1 {
-  font-family: "Rajdhani", sans-serif;
-  font-size: 3em;
-  color: #00ffff;
-  text-shadow: 0 0 20px #00ffff;
-  animation: neonPulse 1.6s infinite alternate;
-}
-.profile p {
-  font-size: 1.1em;
-  color: #c8fcee;
-  line-height: 1.5;
-}
+.profile h1 { font-family: "Rajdhani", sans-serif; font-size: 5vw; color: #00ffff; text-shadow: 0 0 20px #00ffff; animation: neonPulse 1.6s infinite alternate; }
+.profile p { font-size: 2.5vw; color: #c8fcee; line-height: 1.5; }
 
-/* Neon Animation */
-@keyframes neonPulse {
-  from { text-shadow: 0 0 10px #00ffff; }
-  to { text-shadow: 0 0 25px #00ffff, 0 0 50px #00ccff; }
-}
+@keyframes neonPulse { from { text-shadow:0 0 10px #00ffff;} to{ text-shadow:0 0 25px #00ffff, 0 0 50px #00ccff; } }
 
-/* User List */
 .list {
-  padding: 20px;
-  border-radius: 15px;
+  padding: 2vh 2vw;
+  border-radius: 1vw;
   background: rgba(255,255,255,0.05);
   border: 1px solid rgba(0,255,255,0.2);
   box-shadow: inset 0 0 20px rgba(0,255,255,0.2);
 }
-.list h2 {
-  text-align: center;
-  margin-bottom: 20px;
-  font-size: 1.8em;
-  color: #00ffff;
-  text-shadow: 0 0 15px #00ffff;
-  font-family: "Rajdhani", sans-serif;
-}
+.list h2 { text-align: center; margin-bottom: 2vh; font-size: 4vw; color: #00ffff; text-shadow: 0 0 15px #00ffff; font-family: "Rajdhani", sans-serif; }
 
-/* User Cards */
-.user-list {
-  max-height: 300px;
-  overflow-y: auto;
-  padding-right: 10px;
-}
-.user-card {
-  background: rgba(0,0,0,0.7);
-  border-radius: 12px;
-  padding: 18px;
-  margin-bottom: 15px;
-  border: 1px solid rgba(0,255,200,0.3);
-}
+.user-list { max-height: 40vh; overflow-y: auto; padding-right: 1vw; }
+.user-card { background: rgba(0,0,0,0.7); border-radius: 1vw; padding: 1.5vh 1vw; margin-bottom: 2vh; border: 1px solid rgba(0,255,200,0.3); font-size: 3vw; }
 
-/* Buttons */
-.btn-group {
-  display: flex;
-  justify-content: center;
-  gap: 15px;
-}
-.btn {
-  flex: 1;
-  padding: 16px 0;
-  border-radius: 20px;
-  font-weight: 700;
-  background: rgba(0,0,0,0.8);
-  color: #00ffff;
-  text-decoration: none;
-  font-size: 1.2em;
-  border: 2px solid #00ffff;
-  text-align: center;
-  box-shadow: 0 0 25px #00ffff80;
-  transition: 0.35s ease;
-}
-.btn:hover { transform: scale(1.05); box-shadow: 0 0 40px #00ffff; color: #fff; }
+.btn-group { display: flex; justify-content: center; gap: 2vw; flex-wrap: wrap; }
+.btn { flex: 1; min-width: 30%; padding: 1.5vh 0; border-radius: 2vw; font-weight: 700; background: rgba(0,0,0,0.8); color: #00ffff; text-decoration: none; font-size: 4vw; border: 2px solid #00ffff; text-align: center; box-shadow: 0 0 25px #00ffff80; transition: 0.35s ease; }
+.btn:hover { transform: scale(1.05); box-shadow:0 0 40px #00ffff; color:#fff; }
 
 /* Responsive */
 @media (max-width: 600px) {
-  .main-box { padding: 25px 15px; max-height: 85vh; }
-  .profile h1 { font-size: 2em; }
-  .profile p { font-size: 0.95em; }
-  .btn { font-size: 1em; padding: 12px 0; }
-  .user-card { padding: 14px; font-size: 0.9em; }
+  .main-box { max-height: 85vh; padding: 4vh 4vw; }
+  .profile h1 { font-size: 8vw; }
+  .profile p { font-size: 4vw; }
+  .user-card { font-size: 4vw; }
+  .btn { font-size: 5vw; padding: 2vh 0; }
 }
 </style>
 </head>
@@ -152,32 +71,15 @@ body, html {
 <div class="main-box">
   <div class="profile">
     <h1>TELEGRAM</h1>
-    <p>🛡 Cyber Security | Penetration Testing | Bot Dev<br>
-       ⚡ Automations & Coding Enthusiast<br>
-       🚀 Exploring the Digital World</p>
+    <p>🛡 Cyber Security | Penetration Testing | Bot Dev<br>⚡ Automations & Coding Enthusiast<br>🚀 Exploring the Digital World</p>
   </div>
 
   <div class="list">
     <h2>User Information</h2>
     <div class="user-list">
-      <div class="user-card">
-        <div><strong>Pari</strong></div>
-        <div>Username: @PARI_ODIAGIRL</div>
-        <div>Number: +919583416774</div>
-        <div>User ID: 1875995639</div>
-      </div>
-      <div class="user-card">
-        <div><strong>Bob</strong></div>
-        <div>Username: @bob</div>
-        <div>Number: +1 555 666 7777</div>
-        <div>User ID: 987654</div>
-      </div>
-      <div class="user-card">
-        <div><strong>Charlie</strong></div>
-        <div>Username: @charlie</div>
-        <div>Number: +91 99999 88888</div>
-        <div>User ID: 112233</div>
-      </div>
+      <div class="user-card"><strong>Pari</strong><br>Username: @PARI_ODIAGIRL<br>Number: +919583416774<br>User ID: 1875995639</div>
+      <div class="user-card"><strong>Bob</strong><br>Username: @bob<br>Number: +1 555 666 7777<br>User ID: 987654</div>
+      <div class="user-card"><strong>Charlie</strong><br>Username: @charlie<br>Number: +91 99999 88888<br>User ID: 112233</div>
     </div>
   </div>
 
@@ -188,37 +90,30 @@ body, html {
 </div>
 
 <script>
-// MATRIX BACKGROUND
 const canvas = document.getElementById("matrixCanvas");
 const ctx = canvas.getContext("2d");
 
-function resizeCanvas() {
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
-}
-resizeCanvas();
-window.addEventListener("resize", resizeCanvas);
+function resizeCanvas(){canvas.width=window.innerWidth;canvas.height=window.innerHeight;}
+resizeCanvas();window.addEventListener("resize",resizeCanvas);
 
-const letters = "アァイィウヴエェオカガキギクグケゲコゴサザシジスズセゼソゾタダチッヂツヅテデトドナニヌネノハバパヒビピフブプヘベペホボポマミムメモヤユヨラリルレロワヲンABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-const lettersArray = letters.split("");
-const fontSize = 16;
-const columns = canvas.width / fontSize;
-const drops = Array(Math.floor(columns)).fill(1);
+const letters="アァイィウヴエェオカガキギクグケゲコゴサザシジスズセゼソゾタダチッヂツヅテデトドナニヌネノハバパヒビピフブプヘベペホボポマミムメモヤユヨラリルレロワヲンABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+const lettersArray=letters.split("");const fontSize=16;
+let columns = Math.floor(canvas.width / fontSize);
+let drops = Array(columns).fill(1);
 
-function draw() {
-  ctx.fillStyle = "rgba(0,0,0,0.08)";
+function draw(){
+  ctx.fillStyle="rgba(0,0,0,0.08)";
   ctx.fillRect(0,0,canvas.width,canvas.height);
-  ctx.fillStyle = "#0F0";
-  ctx.font = fontSize + "px monospace";
-
-  for (let i = 0; i < drops.length; i++) {
-    const text = lettersArray[Math.floor(Math.random() * lettersArray.length)];
-    ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-    if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) drops[i] = 0;
+  ctx.fillStyle="#0F0";ctx.font=fontSize+"px monospace";
+  for(let i=0;i<drops.length;i++){
+    const text=lettersArray[Math.floor(Math.random()*lettersArray.length)];
+    ctx.fillText(text,i*fontSize,drops[i]*fontSize);
+    if(drops[i]*fontSize>canvas.height && Math.random()>0.975) drops[i]=0;
     drops[i]++;
   }
 }
-setInterval(draw, 35);
+setInterval(draw,35);
+window.addEventListener("resize",()=>{columns=Math.floor(canvas.width/fontSize);drops=Array(columns).fill(1);});
 </script>
 </body>
 </html>
