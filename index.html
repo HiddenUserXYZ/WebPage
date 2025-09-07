@@ -2,11 +2,15 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mera Server</title>
+    <title>Python Runner</title>
 </head>
 <body style="text-align:center; font-family:sans-serif;">
-    <h1 style="color:green;">🚀 Mera Pehla Server Chal Raha Hai 🚀</h1>
-    <p>Yeh ab HTML se aa raha hai!</p>
+    <h1>🚀 Upload Python File aur Run Karo 🚀</h1>
+
+    <!-- form jo server pe file bhejega -->
+    <form action="http://YOUR_SERVER_IP:5000/upload" method="post" enctype="multipart/form-data">
+        <input type="file" name="file" accept=".py">
+        <button type="submit">Upload & Run</button>
+    </form>
 </body>
 </html>
